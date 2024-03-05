@@ -37,24 +37,21 @@ Output: "ZY"
 
 var convertToTitle = function(columnNumber) {
     function getNumber(number) {
-        return String.fromCharCode(96+number);
+        return String.fromCharCode(65+number);
     }
-
     let res = '';
 
-    console.log(columnNumber % 26)
-
-    while(columnNumber > 26) {
-        columnNumber = (columnNumber - (columnNumber % 26)) / 26;
-        const isInt = columnNumber % 26 === 0 ? columnNumber : columnNumber % 26;
-        res = getNumber(isInt) + res;
+    while(columnNumber > 0) {
+        columnNumber--;
+        res = getNumber(columnNumber % 26) + res;
+        columnNumber = Math.floor(columnNumber/26);  
     }
-    return res.toUpperCase();
+    return res;
 };
 
 //console.log(convertToTitle(1)) //A
 //console.log(convertToTitle(28)) //AB
 console.log(convertToTitle(52)) //AZ
-//console.log(convertToTitle(701)) //ZY
+console.log(convertToTitle(701)) //ZY
 //console.log(convertToTitle(2147483647)) //FXSHRXW
 //console.log(convertToTitle(731)) //ABC
